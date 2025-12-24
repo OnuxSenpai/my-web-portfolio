@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUW - Web Designer & 3D Modeler</title>
+
+    <!-- Вот и tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Вызвала css -->
+    <link rel="stylesheet" href="style.css">
+
+
+
+    <!-- Псевдонимы для цветов -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'lime-brand': '#D1F067', /* Зелёный */
+                        'tipo-black': '#1A1A1A', /* Чёрный */
+                        'tipo-white': '#F4F5F0', /* Белый */
+                    }
+                }
+            }
+        }
+    </script>
+
+
+
+    <style>
+
+        /* Шкала скилла */
+        .skill-bar {
+            position: relative;
+            background: #F4F5F0;
+            height: 45px;
+            border-radius: 45px;
+            overflow: hidden;
+        }
+
+        /* Заполнение шкалы скилла */
+        .skill-fill {
+            position: absolute;
+            right: 0; /* Начинается справа */
+            top: 0;
+            height: 100%;
+            background: #D1F067;
+            border-radius: 45px;
+            width: 0%; /* Начальная ширина 0 */
+            transition: width 1.5s ease-in-out; /* Время анимации */
+        }
+
+        /* Описание скилла */
+        .skill-label {
+            position: absolute;
+            right: 28px;
+            top: 55%;
+            transform: translateY(-50%);
+            font-weight: 800;
+            color: #1A1A1A;
+            font-size: 24px;
+            z-index: 10; /* Слой выше зеленой полосы */
+        }
+
+        /* Класс для активированной анимации */
+        .skill-fill.animated {
+        /* Ширина будет установлена через JavaScript */
+        }
+    </style>
+</head>
+
+
+
+<body class="bg-tipo-black text-white"> <!-- Фон всей страницы чёерный с белым текстом -->
+
+
+
+    <!-- Шапка сайта -->
+    <!-- Header -->
+
+    <header class="bg-lime-brand text-tipo-black py-6 px-8 fixed w-full top-0 z-50">
+        <!-- Фон зеленый + текст черный + вертикальные отступы + горизонтальные
+         + фикс позиция + ширина на макс + прижата к верху + выше всех элементов -->
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Центрирующий контейнер -->
+            <!-- границы макс ширины + цетр горизонт автомаом слева и справа
+            + флекс распределение по вертикали???-->
+            <a href="#home" class="days-one text-4xl font-bold hover:opacity-70 transition cursor-pointer">MUW</a>
+            <!-- Логотип слева -->
+            <nav class="comfort flex gap-8 text-xl font-semibold">
+                <!-- Навигация-->
+                <!-- флекс по горизонтали??? + оступ + размер текста + полужирный текст -->
+
+                <!-- Далее все части сайта -->
+                <!-- У каждой: полупрозрачность на 70 проц при наведении + плавная анимация при наведении -->
+                <a href="#home" class="hover:opacity-70 transition">HOME</a>
+                <a href="#skills" class="hover:opacity-70 transition">SKILLS</a>
+                <a href="#services" class="hover:opacity-70 transition">SERVICES</a>
+                <a href="#portfolio" class="hover:opacity-70 transition">PORTFOLIO</a>
+                <a href="#contact" class="hover:opacity-70 transition">CONTACTME</a>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-52 pb-32 px-8">
+        <!-- Вся секция Home -->
+        <!-- Айдишник говорит адрес, куда автоматом прокрутится сайт
+         отступ сверху + снизу + слева и спрва (вместе) -->
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Flex контейнер -->
+            <!-- макс ширина + автомат центрирование слева и справа + флекс в центр по высоте + распределение слева и справа -->
+
+            <div class="flex-1 pl-20">
+                <!-- ЛЕВАЯ часть (текст) -->
+                <!-- занимает 50 проц пространства -->
+                <h1 class="days-one text-7xl text-tipo-white font-bold mb-4">Hi, I'm MUW!</h1>
+                <!-- Заголовок -->
+                <!-- размер текста + жирный текст + отступ снизу -->
+                <p class="comfort text-3xl text-lime-brand mb-16 ml-4">Web-Designer and 3D-modeler</p>
+                <!-- Подзаголовок -->
+                <!-- размер текста + отступ снизу -->
+                <a href="#contact" class="days-one bg-lime-brand text-tipo-black text-xl px-14 py-5 rounded-full font-semibold hover:opacity-90 transition ml-32">
+                    Contact me
+                </a>
+                <!-- Кнопка -->
+                <!-- Отступы на пэшки + полностю круглые углы + при наведении 90 проц непрозрачности + плавная анимация -->
+            </div>
+
+            <!-- Вот это контейнер -->
+            <div class="flex-1 flex justify-end">
+                <!-- ПРАВАЯ часть (фото) -->
+                <!-- занимает 50 проц пространства + флекс вправо -->
+
+                 <!-- <div class="bg-lime-brand rounded-3xl w-96 h-[28rem] flex items-center justify-center"> -->
+
+                    <!-- Зеленый контейнер для фото-->
+                    <!-- большое скругление + ширина и высота + центрирование по вертикали и горизонтали -->
+                    <img src="MUW.png" alt="MUW Profile" class="w-[28rem] h-[32rem] object-contain mr-20">
+                    <!-- Фото внутри -->
+                    <!-- Скругление фото + занимает всю ширину и высоту контейнера + сохранение пропорций -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- SKILLS -->
+    <section id="skills" class="pt-48 pb-44 px-8"> <!-- Айдишник для навигации + отступы вертикаль и горизонталь -->
+        <div class="max-w-4xl mx-auto">
+            <!-- Центрирующий контейнер -->
+            <!-- макс ширина + автомат отступы слева и справа -->
+            <h2 class="days-one text-lime-brand text-6xl font-bold text-center mb-16">SKILLS</h2>
+            <!-- Заголовок секции -->
+            <!-- Размер текста + жирный шрифт + выравнивание по центру + отступ снизу -->
+
+            <div class="space-y-8">
+                <!-- Контейнер для элементов навыков -->
+                <!-- Вертикальные отступы меж собой -->
+
+                <!-- Далее будут блоки с навыками -->
+
+                <!-- FIGMA -->
+<div class="flex items-center gap-12">
+    <div class="bg-tipo-white w-28 h-28 rounded-3xl flex items-center justify-center flex-shrink-0">
+        <img src="LOGO_SKILLS/FIGMA.png" alt="MUW Profile" class="w-16 h-16 object-contain">
+    </div>
+    <div class="flex-1 skill-bar">
+        <div class="skill-fill" data-width="90%"></div> <!-- Добавлен data-width -->
+        <div class="comfort skill-label">FIGMA</div>
+    </div>
+</div>
+
+<!-- PHOTOSHOP -->
+<div class="flex items-center gap-12">
+    <div class="w-28 h-28 bg-tipo-white rounded-3xl flex items-center justify-center flex-shrink-0">
+        <img src="LOGO_SKILLS/PROTOSHOP.png" alt="MUW Profile" class="w-16 h-16 object-contain">
+    </div>
+    <div class="flex-1 skill-bar">
+        <div class="skill-fill" data-width="85%"></div> <!-- Добавлен data-width -->
+        <div class="comfort skill-label">PHOTOSHOP</div>
+    </div>
+</div>
+
+<!-- CINEMA 4D -->
+<div class="flex items-center gap-12">
+    <div class="w-28 h-28 bg-tipo-white rounded-3xl flex items-center justify-center flex-shrink-0">
+        <img src="LOGO_SKILLS/CINEMA 4D.png" alt="MUW Profile" class="w-16 h-16 object-contain">
+    </div>
+    <div class="flex-1 skill-bar">
+        <div class="skill-fill" data-width="80%"></div> <!-- Добавлен data-width -->
+        <div class="comfort skill-label">MAXON CINEMA 4D</div>
+    </div>
+</div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- SERVICES -->
+<section id="services" class="pt-40 pb-44 px-8">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="days-one text-lime-brand text-6xl font-bold text-center mb-20">SERVICES</h2>
+        <div class="grid grid-cols-3 gap-8">
+            
+            <!-- Logo Creation -->
+            <div class="text-center group cursor-pointer"> <!-- Класс group для управления анимацией при наведении -->
+                <div class="relative h-[460px] overflow-visible">
+                    <!-- Зеленый блок с логотипом (изначально по центру) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-20 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[11%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: зеленый блок опускается вниз -->
+                        <div class="relative">
+                            <img src="LOGO_night/LOGO_green_night.png" class="w-[266px] h-[266px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <img src="LOGO_night/LOGO_night.png" class="w-40 h-40 object-contain">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Белый блок с текстом (изначально скрыт под зеленым) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-10 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[98%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: белый блок поднимается вверх -->
+                        <div class="relative">
+                            <img src="LOGO_night/LOGO_white_night.png" class="w-[260px] h-[260px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <p class="comfort text-tipo-black text-center font-extrabold text-3xl mt-4 mb-[15px]">LOGO<br>CREATION</p>
+                                <div class="text-tipo-black text-center font-semibold text-[14px] space-y-1 mb-[50px]">
+                                    <p class="comfort">I CAN CREATE ANY</p>
+                                    <p class="comfort">LOGO ACCORDING</p>
+                                    <p class="comfort">TO YOUR</p>
+                                    <p class="comfort">PREFERENCES</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 3D Creation -->
+            <div class="text-center group cursor-pointer"> <!-- Класс group для управления анимацией при наведении -->
+                <div class="relative h-[460px] overflow-visible">
+                    <!-- Зеленый блок с логотипом (изначально по центру) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-20 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[11%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: зеленый блок опускается вниз -->
+                        <div class="relative">
+                            <img src="3D_night/3D_green_night.png" class="w-[266px] h-[266px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <img src="3D_night/3D_night.png" class="w-40 h-40 object-contain">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Белый блок с текстом (изначально скрыт под зеленым) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-10 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[98%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: белый блок поднимается вверх -->
+                        <div class="relative">
+                            <img src="3D_night/3D_white_night.png" class="w-[260px] h-[260px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <p class="comfort text-tipo-black text-center font-extrabold text-3xl mt-4 mb-[15px]">3D<br>CREATION</p>
+                                <div class="text-tipo-black text-center font-semibold text-[14px] space-y-1 mb-[50px]">
+                                    <p class="comfort">I CAN CREATE ANY</p>
+                                    <p class="comfort">3D MODEL</p>
+                                    <p class="comfort">ACCORDING TO</p>
+                                    <p class="comfort">YOUR PREFERENCES</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Website Design -->
+            <div class="text-center group cursor-pointer"> <!-- Класс group для управления анимацией при наведении -->
+                <div class="relative h-[460px] overflow-visible">
+                    <!-- Зеленый блок с логотипом (изначально по центру) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-20 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[11%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: зеленый блок опускается вниз -->
+                        <div class="relative">
+                            <img src="WEB_night/WEB_green_night.png" class="w-[266px] h-[266px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <img src="WEB_night/WEB_night.png" class="w-40 h-40 object-contain"> <!-- ДОПОЛНИТЕЛЬНАЯ АНИМАЦИЯ: иконка увеличивается при наведении -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Белый блок с текстом (изначально скрыт под зеленым) -->
+                    <div class="absolute w-full top-1/2 left-0 transform -translate-y-1/2 z-10 
+                                transition-all duration-500 ease-out delay-75
+                                group-hover:-translate-y-[98%]"> <!-- АНИМАЦИЯ ПРИ НАВЕДЕНИИ: белый блок поднимается вверх -->
+                        <div class="relative">
+                            <img src="WEB_night/WEB_white_night.png" class="w-[260px] h-[260px] object-contain mx-auto">
+                            <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                <p class="comfort text-tipo-black text-center font-extrabold text-3xl mt-4 mb-[15px]">WEBSITE<br>DESIGN</p>
+                                <div class="text-tipo-black text-center font-semibold text-[14px] space-y-1 mb-[50px]">
+                                    <p class="comfort">I CAN CREATE ANY</p>
+                                    <p class="comfort">WEBSITE DESIGN</p>
+                                    <p class="comfort">ACCORDING TO</p>
+                                    <p class="comfort">YOUR PREFERENCES</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="pt-40 pb-44 px-8">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="days-one text-lime-brand text-6xl font-bold text-center mb-20">PORTFOLIO</h2>
+
+            <div class="relative">
+                <div class="flex items-center justify-center gap-8">
+                    <!-- Кнопка назад -->
+                    <button class="bg-lime-brand w-16 h-16 rounded-full flex items-center justify-center hover:opacity-90 transition" onclick="previousSlide()">
+                        <img src="STRELKI/strelka_levo.png" class="w-[20px] h-[20px] object-contain" alt="Предыдущий">
+                    </button>
+
+                    <!-- Область изображения -->
+                    <div class="bg-tipo-black border-lime-brand w-[600px] h-[400px] rounded-tr-[48px] rounded-bl-[48px] flex items-center justify-center border-2 overflow-hidden">
+                        <!-- Контейнер для слайдов -->
+                        <div id="slidesContainer" class="relative w-full h-full">
+                            <!-- Слайд 1 (активный) -->
+                            <div class="slide absolute inset-0 opacity-100 transition-opacity duration-500">
+                                <img src="/SLIDER/LOGO_SLIDER.png" alt="Логотипы" class="w-full h-full object-cover rounded-tr-[24px] rounded-bl-[24px]">
+                            </div>
+                        
+                            <!-- Слайд 2 -->
+                            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-500">
+                                <img src="/SLIDER/3D_SLIDER.png" alt="3D модели" class="w-full h-full object-cover rounded-tr-[24px] rounded-bl-[24px]">
+                            </div>
+                        
+                            <!-- Слайд 3 -->
+                            <div class="slide absolute inset-0 opacity-0 transition-opacity duration-500">
+                                <img src="/SLIDER/WEB_SLIDER.png" alt="Веб-дизайн" class="w-full h-full object-cover rounded-tr-[24px] rounded-bl-[24px]">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Кнопка вперед -->
+                    <button class="w-16 h-16 rounded-full bg-lime-brand flex items-center justify-center hover:opacity-90 transition" onclick="nextSlide()">
+                        <img src="STRELKI/strelka_pravo.png" class="w-[20px] h-[20px] object-contain" alt="Следующий">
+                    </button>
+                </div>
+                <!-- Убраны индикаторы -->
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CONTACT -->
+    <section id="contact" class="pt-40 pb-44 px-8">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="days-one text-lime-brand text-6xl font-bold text-center mb-20">CONTACT ME</h2>
+
+            <div class="flex gap-12"> <!-- Расстояние между колонками -->
+
+                <div class="flex-1 space-y-6"> <!-- Левая колонка -->
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12">
+                            <img src="/IKONS/TG_night.png" alt="Веб-дизайн" class="w-full h-full object-cover ">
+                        </div>
+                        <span class="comfort text-lime-brand text-xl">@muuuwika</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12">
+                            <img src="/IKONS/MAIL_night.png" alt="Веб-дизайн" class="w-full h-full object-cover ">
+                        </div>
+                        <span class="comfort text-lime-brand text-xl">muw@gmail.com</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12">
+                            <img src="/IKONS/VK_night.png" alt="Веб-дизайн" class="w-full h-full object-cover ">
+                        </div>
+                        <span class="comfort text-lime-brand text-xl">@muy_solnusko</span>
+                    </div>
+                </div>
+
+                <div class="flex-1"> <!-- Правая колонка -->
+                    <form class="space-y-8" onsubmit="handleSubmit(event)">
+                    <!-- Вертикальными отступы меж элементами + вызов функции js -->
+
+                        <div class="grid grid-cols-2 gap-8 "> <!-- сетка из 2 колонок с отступом 16px -->
+                            <input type="text" placeholder="NAME" class="bg-tipo-white text-tipo-black comfort px-4 py-4 rounded-tr-[24px] rounded-bl-[24px] placeholder-gray-500 font-semibold">
+                            <!-- Поле ввода NAME, размер + скругление +  цвет текста + полужирыный шрифт-->
+                            <input type="email" placeholder="EMAIL" class="bg-tipo-white text-tipo-black comfort px-4 py-4 rounded-tr-[24px] rounded-bl-[24px] placeholder-gray-500 font-semibold">
+                        </div>
+                        <textarea placeholder="MESSAGE" rows="8" class="bg-tipo-white text-tipo-black comfort w-full px-4 py-4 rounded-tr-[24px] rounded-bl-[24px] placeholder-gray-500 font-semibold resize-none"></textarea>
+                        <div class="text-center">
+                        <!-- мгновенно текст + высота строк + максимальная ширина + скругление +  -->
+                            <button type="submit" class="days-one bg-lime-brand text-tipo-black text-xl px-14 py-5 rounded-full font-semibold hover:opacity-90 transition  ml-4 ">
+                                Send message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+            
+    <footer class="bg-lime-brand text-tipo-black pt-24 pb-24 px-8">
+    <!-- размеры футера -->
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <a href="#home" class="days-one text-4xl font-bold hover:opacity-70 transition cursor-pointer">MUW</a>
+                    <div class="days-one text-sm space-y-2 mt-2">
+                        <div>Web-Designer</div>
+                        <div>3D-modeler</div>
+                    </div>
+                </div>
+                <nav class="comfort flex gap-8 text-xl font-semibold">
+                    <a href="#home" class="hover:opacity-70 transition">HOME</a>
+                    <a href="#skills" class="hover:opacity-70 transition">SKILLS</a>
+                    <a href="#services" class="hover:opacity-70 transition">SERVICES</a>
+                    <a href="#portfolio" class="hover:opacity-70 transition">PORTFOLIO</a>
+                    <a href="#contact" class="hover:opacity-70 transition">CONTACTME</a>
+                </nav>
+            </div>
+            <div class="comfort text-xs opacity-70">© MUW. All rights reserved</div>
+        </div>
+    </footer>
+<script>
+    
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+
+    // Portfolio slider
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach(slide => {
+            slide.style.opacity = '0';
+            slide.style.pointerEvents = 'none';
+        });
+        slides[index].style.opacity = '1';
+        slides[index].style.pointerEvents = 'auto';
+        currentSlide = index;
+    }
+
+    function nextSlide() {
+        let nextIndex = currentSlide + 1;
+        if (nextIndex >= totalSlides) nextIndex = 0;
+        showSlide(nextIndex);
+    }
+
+    function previousSlide() {
+        let prevIndex = currentSlide - 1;
+        if (prevIndex < 0) prevIndex = totalSlides - 1;
+        showSlide(prevIndex);
+    }
+
+    // Form submission
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert('Message sent! Thank you for contacting me.');
+        e.target.reset();
+    }
+
+    // ===== АНИМАЦИЯ ШКАЛ НАВЫКОВ (КАЖДЫЙ РАЗ ПРИ ПРОСМОТРЕ) =====
+    
+    // Глобальная переменная для отслеживания состояния анимации
+    let skillAnimationTimeout = null;
+    
+    // Функция сброса и запуска анимации
+    function resetAndAnimateSkillBars() {
+        const skillFills = document.querySelectorAll('.skill-fill');
+        
+        // Сбрасываем ширину всех полосок
+        skillFills.forEach(fill => {
+            fill.style.width = '0%';
+        });
+        
+        // Очищаем предыдущий таймаут, если он есть
+        if (skillAnimationTimeout) {
+            clearTimeout(skillAnimationTimeout);
+        }
+        
+        // Даем время для сброса (50ms)
+        skillAnimationTimeout = setTimeout(() => {
+            // Запускаем анимацию с задержкой для каждой полоски
+            skillFills.forEach((fill, index) => {
+                setTimeout(() => {
+                    const targetWidth = fill.getAttribute('data-width');
+                    if (targetWidth) {
+                        fill.style.width = targetWidth;
+                    }
+                }, index * 300); // Задержка 300ms между каждой
+            });
+        }, 50);
+    }
+    
+    // Инициализация наблюдателя за секцией SKILLS
+    function initSkillBarsObserver() {
+        const skillsSection = document.getElementById('skills');
+        if (!skillsSection) return;
+        
+        // Добавляем CSS класс для анимации при входе/выходе
+        const skillFills = document.querySelectorAll('.skill-fill');
+        skillFills.forEach(fill => {
+            fill.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+        });
+        
+        // Создаем Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Когда секция появляется в viewport
+                    resetAndAnimateSkillBars();
+                } else {
+                    // Когда секция скрывается из viewport (опционально)
+                    // Можно сбросить анимацию при уходе
+                    const skillFills = document.querySelectorAll('.skill-fill');
+                    skillFills.forEach(fill => {
+                        fill.style.width = '0%';
+                    });
+                }
+            });
+        }, {
+            threshold: 0.3, // Срабатывает когда 30% секции видно
+            rootMargin: '50px 0px 50px 0px' // Запас 50px сверху и снизу
+        });
+        
+        observer.observe(skillsSection);
+    }
+    
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        showSlide(0);
+        initSkillBarsObserver();
+        
+        // Также запускаем анимацию при клике на ссылку SKILLS в меню
+        document.querySelectorAll('a[href="#skills"]').forEach(link => {
+            link.addEventListener('click', () => {
+                // Задержка для гарантии, что скролл завершился
+                setTimeout(resetAndAnimateSkillBars, 500);
+            });
+        });
+    });
+    
+    // Дополнительно: анимация при загрузке страницы, если секция уже видна
+    function checkInitialView() {
+        const skillsSection = document.getElementById('skills');
+        if (skillsSection) {
+            const rect = skillsSection.getBoundingClientRect();
+            const isVisible = (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+            
+            if (isVisible) {
+                resetAndAnimateSkillBars();
+            }
+        }
+    }
+    
+    // Проверяем при загрузке
+    window.addEventListener('load', checkInitialView);
+    
+    // Также проверяем при изменении размера окна
+    window.addEventListener('resize', checkInitialView);
+</script>
+</body>
+</html>
